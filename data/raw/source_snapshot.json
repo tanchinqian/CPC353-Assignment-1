@@ -1,0 +1,16 @@
+{
+  "source_spreadsheet_id": "1BzvT_kU5uHniEZFE2YcY6KccbnY7EIFWFnN0ebUUVvs",
+  "source_url": "https://docs.google.com/spreadsheets/d/1BzvT_kU5uHniEZFE2YcY6KccbnY7EIFWFnN0ebUUVvs/edit",
+  "snapshot_date": "2026-11-02",
+  "method": "Read-only values snapshot of the two review tabs; non-review template rows omitted. Original review text preserved verbatim.",
+  "sheets": {
+    "real_reviews.csv": "Self-Collected Data",
+    "ai_reviews.csv": "AI-Generated Data"
+  },
+  "review_counts": {
+    "real": 12,
+    "ai": 53
+  },
+  "scope": "Shin Ramyun",
+  "dates": "Assigned real dates are synthetic metadata, not original publication dates. Dates excluded from linguistic analysis."
+}
