@@ -1,8 +1,9 @@
 """Execute this project's plain-Python notebook cells without a Jupyter install.
 
-Run from anywhere: python tools/run_notebook.py
+Run from anywhere: python tools/run_notebook.py [notebook.ipynb]
 The saved notebook contains actual stdout/stderr from each executed code cell.
-For interactive work, open preprocessing.ipynb in Colab or Jupyter instead.
+Select preprocessing.ipynb or stopword_analysis.ipynb. For interactive work,
+open the selected notebook in Colab or Jupyter instead.
 """
 import contextlib
 import io
@@ -10,9 +11,14 @@ import json
 import os
 from pathlib import Path
 import traceback
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-NOTEBOOK = ROOT / "preprocessing.ipynb"
+ALLOWED_NOTEBOOKS = {"preprocessing.ipynb", "stopword_analysis.ipynb"}
+NOTEBOOK_NAME = Path(sys.argv[1]).name if len(sys.argv) > 1 else "preprocessing.ipynb"
+if NOTEBOOK_NAME not in ALLOWED_NOTEBOOKS:
+    raise SystemExit(f"Choose one of: {', '.join(sorted(ALLOWED_NOTEBOOKS))}")
+NOTEBOOK = ROOT / NOTEBOOK_NAME
 
 
 def run():
@@ -31,7 +37,7 @@ def run():
             try:
                 with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
                     exec(compile("".join(cell["source"]),
-                                 f"preprocessing.ipynb:cell-{execution}", "exec"), namespace)
+                                 f"{NOTEBOOK_NAME}:cell-{execution}", "exec"), namespace)
             except Exception:
                 cell["outputs"] = [{"output_type": "stream", "name": "stderr",
                                     "text": traceback.format_exc().splitlines(True)}]

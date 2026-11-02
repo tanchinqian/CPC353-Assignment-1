@@ -1,8 +1,10 @@
 # CPC353 Assignment 1 — Shin Ramyun corpus
 
-Start with **[preprocessing.ipynb](preprocessing.ipynb)**. It is a step-by-step
-Python notebook for preparing English–Malay reviews for concordance, n-grams
-and stop-word analysis. It uses pandas and NLTK without NLTK resource downloads.
+Start with **[preprocessing.ipynb](preprocessing.ipynb)**. It prepares the
+English-Malay reviews while preserving original text and unfiltered tokens.
+Then run **[stopword_analysis.ipynb](stopword_analysis.ipynb)** for the
+stop-word frequency analysis. The notebooks use pandas; preprocessing also
+uses NLTK without resource downloads.
 
 [Open in Colab](https://colab.research.google.com/github/tanchinqian/CPC353-Assignment-1/blob/main/preprocessing.ipynb)
 
@@ -11,15 +13,16 @@ and stop-word analysis. It uses pandas and NLTK without NLTK resource downloads.
 1. Open the notebook in Colab/Jupyter.
 2. Install `requirements.txt` locally, or run `%pip install pandas nltk` in Colab.
 3. Keep the two CSV inputs under `data/raw/` and set `PROJECT_DIR` in cell 1.
-4. Run every cell in order.
-5. Use `data/processed/` for later analysis. Download `preprocessed_results.zip`
+4. Run every cell in `preprocessing.ipynb` in order, then run `stopword_analysis.ipynb`.
+5. Use `data/processed/` and `data/analysis/` for saved outputs. Download `preprocessed_results.zip`
    or set the project folder to mounted Drive before the Colab session ends.
 
-A local command also runs all notebook code cells and saves their actual outputs:
+A local command runs a selected notebook and saves its outputs:
 
 ```powershell
 python -m pip install -r requirements.txt
-python tools/run_notebook.py
+python tools/run_notebook.py preprocessing.ipynb
+python tools/run_notebook.py stopword_analysis.ipynb
 ```
 
 The runner uses a shared Python namespace, not a Jupyter kernel; the notebook
@@ -90,12 +93,10 @@ are required to run the notebook, and it never writes to the Google Sheet.
 JSONL preserves actual arrays. CSV array cells are JSON strings:
 `json.loads(cell)`, never `eval(cell)`.
 
-For **concordance**, use original/normalized text. For **n-grams**, use
-`sentence_tokens_before` and keep each sentence/review separate.
 For **stop-word analysis**, compare `tokens_before`, `tokens_after` and
-`tokens_removed`. This notebook only prepares and saves those three views; it
-does **not** yet calculate or interpret word-frequency rankings. That is the
-next analysis step.
+`tokens_removed`. Preprocessing does not delete original wording or the
+unfiltered token list. The separate `stopword_analysis.ipynb` compares
+stop-word frequencies and saves tables under `data/analysis/`.
 
 Filtering does not delete the original review or the unfiltered token list.
 Each JSONL row keeps `original_text`, `tokens_before`, `tokens_after` and
