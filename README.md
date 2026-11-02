@@ -107,25 +107,34 @@ stop-word list, it is removed from the filtered view; `tak` and `not` are kept
 because negation changes meaning. The exact list is in `stopwords_used.csv`.
 
 In the later stop-word analysis, count words in the before and after views,
-separately for collected and AI reviews. For example:
+using the full dataset as one corpus. For example:
 
 ```python
 from collections import Counter
 import json
 from pathlib import Path
 
-real_rows = [json.loads(line) for line in
-             Path("data/processed/real_preprocessed.jsonl").read_text(encoding="utf-8").splitlines()]
-before_counts = Counter(token for row in real_rows for token in row["tokens_before"])
-after_counts = Counter(token for row in real_rows for token in row["tokens_after"])
+all_rows = []
+for filename in ["real_preprocessed.jsonl", "ai_preprocessed.jsonl"]:
+    all_rows.extend(json.loads(line) for line in
+                    Path("data/processed", filename).read_text(encoding="utf-8").splitlines())
+before_counts = Counter(token for row in all_rows for token in row["tokens_before"])
+after_counts = Counter(token for row in all_rows for token in row["tokens_after"])
 print(after_counts.most_common(20))
 ```
 
-Compare these frequency tables to see which words recur. A word count alone
-does not prove an attribute is frequently discussed: inspect review contexts
-with concordance, and use the original unfiltered order for n-grams. Do not
-build ordinary n-grams from filtered words, since removal can create word
-adjacencies that were not in the review. Keep collected and AI results apart.
+Compare these counts to see which words recur and how much filtering changes
+the full corpus. A word count alone does not prove an attribute is frequently
+discussed. The corpus contains both collected and AI-generated reviews, so
+describe it as a mixed-source dataset rather than treating every review as a
+verified customer account.
+
+The stop-word notebook saves these combined-corpus tables:
+
+| File in data/analysis | Purpose |
+| --- | --- |
+| stopword_frequency_overall.csv | Frequency of each project stop word before and after filtering, including normalized rates |
+| stopword_review_summary.csv | Stop-word counts and removed-token share for each review |
 
 ## Assignment requirements and current limitations
 
