@@ -1,4 +1,4 @@
-# CPC353 Assignment 1 — Shin Ramyun corpus
+# CPC353 Assignment 1 - Instant noodle review corpus
 
 Start with **[preprocessing.ipynb](preprocessing.ipynb)**. It prepares the
 English-Malay reviews while preserving original text and unfiltered tokens.
@@ -37,11 +37,21 @@ They preserve original text, source metadata, annotations and AI provenance.
 See `data/raw/source_snapshot.json`. Only review-bearing rows are copied;
 blank/template/prompt-only rows are omitted.
 
+The research scope is **instant noodles across products**. The current input
+snapshot is a 65-review Shin Ramyun subset, not a multi-product sample. Keep
+its product labels and review wording intact. Add collected reviews of other
+instant noodle products with their actual source URLs and product names; add
+any new synthetic examples with accurate product labels and generation notes.
+Re-export both review tabs and rerun both notebooks before interpreting the
+broader category. Do not describe the current statistics as category-wide.
+
 For more reviews, replace the appropriate CSV with an updated export, keeping
 its headings. Alternatively set `WORKBOOK` to a freshly exported XLSX in the
 notebook and install `openpyxl`; it reads headings on row 4 of
 `Self-Collected Data` and `AI-Generated Data`. This optional XLSX route has
-not been executed locally because openpyxl is unavailable. Add the workbook
+not been executed locally because openpyxl is unavailable. The current sheet
+uses `Product / Brand Name`; the notebook also accepts the older
+`Product / Eatery Name` heading in the CSV snapshot. Add the workbook
 locally without committing it unless needed. No Google credentials or APIs
 are required to run the notebook, and it never writes to the Google Sheet.
 
@@ -57,7 +67,7 @@ are required to run the notebook, and it never writes to the Google Sheet.
   Keep the first structurally valid row, with real data before AI. No fuzzy
   duplicate removal. Each exclusion is recorded in `review_audit.csv`.
 - Manual exclusions require origin, ID and exact original-text SHA-256.
-  Prior exclusions from the old multi-product dataset are not transferred.
+  Prior exclusions from a different dataset are not transferred.
 - On a derived copy, decode HTML entities, lowercase, normalize Unicode,
   remove URLs/emails/HTML tags and collapse whitespace.
 - NLTK RegexpTokenizer keeps letter-based Unicode words, contractions, internal
@@ -145,19 +155,20 @@ a 3–6 page IEEE report (excluding cover), Word and PDF, due 13 November 2026.
 This deliverable is preprocessing; it does not claim to complete the report
 or the three final analyses.
 
-Current snapshot: **12 collected + 53 AI = 65 reviews**, below the target.
+Current snapshot: **12 collected + 53 AI = 65 Shin Ramyun reviews**, below the target
+and not yet representative of other instant noodle products.
 Preprocessing currently retains all 65 structurally valid unique texts.
 Collected labels: 7 English, 5 code-switched. AI labels: 16 English,
 17 Malay, 20 code-switched. Treat counts as provisional.
 
-REV-01 mentions duck seasoning despite its Shin Ramyun product metadata:
+REV-01 mentions duck seasoning despite its recorded product metadata:
 check the source/content before final analysis. It is flagged, not silently
 deleted. The pipeline does not verify any website; resolve the manual queue
 before publishing final findings.
 
 The AI examples were generated from themes, without direct real-review seed
 IDs. The brief permits generation from a real seed set: confirm whether this
-theme-based approach is acceptable or regenerate from verified Shin Ramyun
+theme-based approach is acceptable or regenerate from verified instant noodle
 seed reviews later. No seed provenance is invented.
 
 The supplied reference notebook is used for its simple preprocessing layout,

@@ -30,13 +30,13 @@ with tempfile.TemporaryDirectory(prefix="preprocessing-test-", dir=ROOT) as temp
         def real(identifier, text, source="https://example.org/review"):
             return {"source_row": "5", "Review ID": identifier, "Review Text": text,
                     "Language Classification": "Code-switched", "Source URL": source,
-                    "Product / Eatery Name": "Shin Ramyun",
+                    "Product / Eatery Name": "Example Instant Noodles",
                     "Notes / Annotator Comments": ""}
 
         def ai(identifier, text):
             return {"source_row": "5", "Review ID": identifier,
                     "Generated Review Text": text, "Language Classification": "English",
-                    "Product / Eatery Name": "Shin Ramyun"}
+                    "Product / Eatery Name": "Example Instant Noodles"}
 
         ns["tables"] = {
             "real": pd.DataFrame([
@@ -51,7 +51,7 @@ with tempfile.TemporaryDirectory(prefix="preprocessing-test-", dir=ROOT) as temp
                 ai("", ""),
             ]),
         }
-        for index in range(2, 9):
+        for index in range(2, 13):
             execute(index, ns)
         audit, cleaned = ns["audit"], ns["cleaned"]
         assert len(audit) == 10  # Prompt-only/blank template is not a review.
