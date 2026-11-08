@@ -2,3 +2,12 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 preprocessed_results.zip
+
+# Local collection material is intentionally outside the processing repository.
+/Assignment with LR and Data Analysis Rubrics.docx
+/English_Malay_CodeSwitching_Corpus_Data_Collection_Schema.xlsx
+/output/
+/tmp/
+
+# Regenerate concordance evidence with concordance_analysis.ipynb.
+/data/analysis/concordance/

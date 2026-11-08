@@ -1,0 +1,13 @@
+expression,language,gloss,interpretation
+sedap,Malay,tasty or delicious,Positive evaluation; check negation and surrounding wording.
+pedas,Malay,spicy,Heat attribute; its polarity depends on context and preference.
+kuah,Malay,broth or gravy,Product component; not automatically an evaluation.
+kenyal,Malay,springy or chewy,Texture description; read surrounding evaluation.
+tak,Malay informal,not,Informal negator; preserve when reading attribute claims.
+tapi,Malay informal,but,Contrast marker; does not by itself prove a language switch.
+sgt,Malay abbreviation,sangat (very),Intensifier abbreviation observed in collected review REV-03.
+mmg,Malay abbreviation,memang (indeed or really),Emphasis abbreviation observed in collected review REV-03.
+kaw,Colloquial Malaysian usage,strong or concentrated,In REV-06 it qualifies soup taste under negation; lexical language is context-sensitive.
+sedap gila,Malay informal,very tasty,Intensified evaluation; literal crazy is not the intended meaning here.
+not too spicy,English,moderate heat in context,Negated degree expression; do not interpret spicy in isolation.
+springy,English,elastic or resilient texture,Texture term appearing in both English and code-switched labelled reviews.

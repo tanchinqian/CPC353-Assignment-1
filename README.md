@@ -3,8 +3,14 @@
 Start with **[preprocessing.ipynb](preprocessing.ipynb)**. It prepares the
 English-Malay reviews while preserving original text and unfiltered tokens.
 Then run **[stopword_analysis.ipynb](stopword_analysis.ipynb)** for the
-stop-word frequency analysis. The notebooks use pandas; preprocessing also
+stop-word frequency analysis and **[concordance_analysis.ipynb](concordance_analysis.ipynb)**
+for keyword-in-context evidence. The notebooks use pandas; preprocessing also
 uses NLTK without resource downloads.
+
+Shared Drive, source Sheet, working report, ownership, and agent handoff:
+**[docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md)**. The user owns concordance.
+Local collection material (`output/`, `tmp/`, the brief and collection workbook)
+is deliberately excluded from commits.
 
 [Open in Colab](https://colab.research.google.com/github/tanchinqian/CPC353-Assignment-1/blob/main/preprocessing.ipynb)
 
@@ -13,7 +19,8 @@ uses NLTK without resource downloads.
 1. Open the notebook in Colab/Jupyter.
 2. Install `requirements.txt` locally, or run `%pip install pandas nltk` in Colab.
 3. Keep the two CSV inputs under `data/raw/` and set `PROJECT_DIR` in cell 1.
-4. Run every cell in `preprocessing.ipynb` in order, then run `stopword_analysis.ipynb`.
+4. Run every cell in `preprocessing.ipynb` in order, then run `stopword_analysis.ipynb`
+   and `concordance_analysis.ipynb`.
 5. Use `data/processed/` and `data/analysis/` for saved outputs. Download `preprocessed_results.zip`
    or set the project folder to mounted Drive before the Colab session ends.
 
@@ -23,6 +30,7 @@ A local command runs a selected notebook and saves its outputs:
 python -m pip install -r requirements.txt
 python tools/run_notebook.py preprocessing.ipynb
 python tools/run_notebook.py stopword_analysis.ipynb
+python tools/run_notebook.py concordance_analysis.ipynb
 ```
 
 The runner uses a shared Python namespace, not a Jupyter kernel; the notebook
@@ -146,14 +154,41 @@ The stop-word notebook saves these combined-corpus tables:
 | stopword_frequency_overall.csv | Frequency of each project stop word before and after filtering, including normalized rates |
 | stopword_review_summary.csv | Stop-word counts and removed-token share for each review |
 
+## Concordance analysis
+
+The concordance notebook combines the retained corpus, selects frequent content
+candidates plus explicitly listed English/Malay attribute and discourse terms,
+and exports every exact token/phrase match with up to five tokens on each side.
+Contexts and phrases remain inside estimated sentences; original full reviews
+are retained for inter-sentential interpretation. It uses `tokens_before` and
+`sentence_tokens_before`, never the stop-word-filtered view. Review-language
+labels are inherited and do not constitute automatic switch detection.
+
+The standard-library helper `tools/concordance.py` saves `kwic.csv`,
+`keyword_summary.csv`, `lexicon_evidence.csv`, `lexicon_kwic.csv`, and
+`run_manifest.json` in **`data/analysis/concordance/`**. These generated files are
+ignored by Git. The manifest records input hashes, query configuration and
+token-position conventions. `config/concordance_lexicon.csv` provides a small
+project-authored bilingual reading aid with contextual cautions.
+
+See **[docs/concordance_results.md](docs/concordance_results.md)** for measured
+snapshot findings and examples. After changing data or queries, regenerate the
+outputs and revise that interpretation and the shared report together.
+
 ## Assignment requirements and current limitations
 
 The brief's data-preparation requirements are covered: originals retained,
 missing entries/duplicates addressed, unit defined, before/after counts saved,
 and datasets reusable. The brief asks for approximately 100–200 reviews and
 a 3–6 page IEEE report (excluding cover), Word and PDF, due 13 November 2026.
-This deliverable is preprocessing; it does not claim to complete the report
-or the three final analyses.
+Preprocessing, stop-word analysis and concordance are implemented. This does not
+complete the n-gram work or the remaining sections of the group report.
+
+On 9 November 2026 the live Sheet's summary reports **125 reviews** (57 collected,
+68 AI), while its guide text still says 65. The checked-in November 2 snapshot
+and the results below remain **65 reviews**. The concordance implementation did
+not replace the tracked corpus; export and rerun all methods before presenting
+results for the expanded live dataset.
 
 Current snapshot: **12 collected + 53 AI = 65 Shin Ramyun reviews**, below the target
 and not yet representative of other instant noodle products.
@@ -186,3 +221,14 @@ contractions, informal forms, URL/email removal, sentence boundaries, token
 order/count reconciliation and exported JSONL round trips.
 `tests/check_preprocessing.py` exercises missing records, duplicate IDs/text,
 origin priority and source warnings using small fixtures.
+
+Concordance validation:
+
+```powershell
+python -m unittest discover -s tests -p test_concordance.py
+python tools/run_notebook.py concordance_analysis.ipynb
+```
+
+These checks exercise exact/case-folded phrases, sentence and review boundaries,
+overlapping matches, review identity across origins, retained negation, zero hits,
+candidate ranking, and corrupt input detection.
