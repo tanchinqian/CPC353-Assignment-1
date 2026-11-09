@@ -94,8 +94,9 @@ The shared report contains editable native tables and a workflow figure,
 using the full 2026-11-09 snapshot:
 
 - Figure 1: all 125 review rows, preprocessing, then concordance, n-gram and
-  stop-word analysis. The n-gram branch is dashed and labelled planned until
-  its implementation and evidence are available.
+  stop-word analysis, with matching solid borders for all three branches.
+  This is an overview of the report methods; n-gram implementation and findings
+  are still pending in their respective sections.
 - Table I: language counts by collected/AI origin, with totals.
 - Table II: selected concordance terms, meanings, occurrences and review coverage.
 - Table III: short collected-review excerpts with contextual interpretation.

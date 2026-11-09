@@ -1,20 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="234pt" height="186pt" viewBox="0 0 234 186">
   <title>Workflow for the three analysis methods</title>
-  <desc>All 125 reviews undergo validation, cleaning and tokenization. The resulting corpus feeds concordance and stop-word analysis, with a third branch for planned n-gram analysis. The planned branch has a dashed connector and border.</desc>
+  <desc>All 125 reviews undergo validation, cleaning and tokenization. The resulting corpus feeds three method branches: concordance analysis, n-gram analysis and stop-word analysis.</desc>
   <rect width="234" height="186" fill="white"/>
   <g fill="#f4f4f4" stroke="#333" stroke-width="0.7">
     <path d="M36 3 H210 L198 39 H24 Z"/>
     <rect x="29" y="60" width="176" height="37"/>
     <rect x="1" y="123" width="72" height="61"/>
-    <rect x="81" y="123" width="72" height="61" stroke="none"/>
-    <path d="M81 123 H84 M81 184 H84 M87 123 H90 M87 184 H90 M93 123 H96 M93 184 H96 M99 123 H102 M99 184 H102 M105 123 H108 M105 184 H108 M111 123 H114 M111 184 H114 M117 123 H120 M117 184 H120 M123 123 H126 M123 184 H126 M129 123 H132 M129 184 H132 M135 123 H138 M135 184 H138 M141 123 H144 M141 184 H144 M147 123 H150 M147 184 H150 M81 123 V126 M153 123 V126 M81 129 V132 M153 129 V132 M81 135 V138 M153 135 V138 M81 141 V144 M153 141 V144 M81 147 V150 M153 147 V150 M81 153 V156 M153 153 V156 M81 159 V162 M153 159 V162 M81 165 V168 M153 165 V168 M81 171 V174 M153 171 V174 M81 177 V180 M153 177 V180 M81 183 V184 M153 183 V184" fill="none"/>
+    <rect x="81" y="123" width="72" height="61"/>
     <rect x="161" y="123" width="72" height="61"/>
   </g>
   <g fill="none" stroke="#333" stroke-width="0.8">
     <path d="M117 39 V56"/>
     <path d="M117 97 V110 H37 V119"/>
     <path d="M117 110 H197 V119"/>
-    <path d="M117 110 V113 M117 116 V119"/>
+    <path d="M117 110 V119"/>
   </g>
   <g fill="#333">
     <path d="M114.5 54 L117 59 L119.5 54 Z"/>
@@ -31,8 +30,8 @@
     <text x="37" y="146" font-weight="bold">analysis</text>
     <text x="37" y="160">Unfiltered</text>
     <text x="37" y="172">KWIC contexts</text>
-    <text x="117" y="136" font-weight="bold">N-gram analysis</text>
-    <text x="117" y="146" font-style="italic">(planned)</text>
+    <text x="117" y="136" font-weight="bold">N-gram</text>
+    <text x="117" y="146" font-weight="bold">analysis</text>
     <text x="117" y="160">Bigrams and</text>
     <text x="117" y="172">trigrams</text>
     <text x="197" y="136" font-weight="bold">Stop-word</text>
