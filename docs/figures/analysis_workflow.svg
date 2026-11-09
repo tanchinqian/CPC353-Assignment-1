@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="234pt" height="174pt" viewBox="0 0 234 174">
+  <title>Workflow for the implemented analyses</title>
+  <desc>All 125 reviews undergo validation, cleaning and tokenization. The resulting corpus feeds concordance analysis using unfiltered sentences and stop-word analysis comparing token counts.</desc>
+  <rect width="234" height="174" fill="white"/>
+  <g fill="#f4f4f4" stroke="#333" stroke-width="0.7">
+    <path d="M36 3 H210 L198 39 H24 Z"/>
+    <rect x="29" y="60" width="176" height="37"/>
+    <rect x="1" y="123" width="109" height="49"/>
+    <rect x="124" y="123" width="109" height="49"/>
+  </g>
+  <g fill="none" stroke="#333" stroke-width="0.8">
+    <path d="M117 39 V56"/>
+    <path d="M117 97 V110 H55.5 V119"/>
+    <path d="M117 110 H178.5 V119"/>
+  </g>
+  <g fill="#333">
+    <path d="M114.5 54 L117 59 L119.5 54 Z"/>
+    <path d="M53 117 L55.5 122 L58 117 Z"/>
+    <path d="M176 117 L178.5 122 L181 117 Z"/>
+  </g>
+  <g font-family="Times New Roman, Times, serif" font-size="8.5" text-anchor="middle" fill="#111">
+    <text x="117" y="17" font-weight="bold">125 review rows</text>
+    <text x="117" y="30">57 collected + 68 AI-generated</text>
+    <text x="117" y="75" font-weight="bold">Validate, clean and tokenize</text>
+    <text x="117" y="88">125 reviews · 2,252 tokens</text>
+    <text x="55.5" y="137" font-weight="bold">Concordance analysis</text>
+    <text x="55.5" y="150">Query unfiltered sentences</text>
+    <text x="55.5" y="162">Extract KWIC contexts</text>
+    <text x="178.5" y="137" font-weight="bold">Stop-word analysis</text>
+    <text x="178.5" y="150">Compare token counts</text>
+    <text x="178.5" y="162">Measure removal rates</text>
+  </g>
+</svg>
