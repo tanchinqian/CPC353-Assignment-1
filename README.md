@@ -7,8 +7,8 @@ stop-word frequency analysis and **[concordance_analysis.ipynb](concordance_anal
 for keyword-in-context evidence. The notebooks use pandas; preprocessing also
 uses NLTK without resource downloads.
 
-Shared Drive, source Sheet, working report, ownership, and agent handoff:
-**[docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md)**. The user owns concordance.
+Shared Drive, source Sheet, working report, and project conventions:
+**[docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md)**.
 Local collection material (`output/`, `tmp/`, the brief and collection workbook)
 is deliberately excluded from commits.
 

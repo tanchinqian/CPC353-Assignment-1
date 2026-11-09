@@ -1,8 +1,8 @@
 # Project handoff
 
 Read `docs/PROJECT_CONTEXT.md` and `README.md` before changing the pipeline.
-The user owns concordance analysis. Keep this repository focused on processing
-code, tests, notebook explanations, and method documentation.
+Keep this shared repository focused on processing code, tests, notebook
+explanations, and method documentation.
 
 Do not commit the local assignment brief, collection-schema spreadsheet,
 `output/`, or `tmp/`. They are reference/collection artifacts, not repository
@@ -20,7 +20,7 @@ Run `python -m unittest discover -s tests -p test_concordance.py` and
 changes. For preprocessing changes also run `python tests/check_preprocessing.py`.
 
 Shared resources and report section locations are in `docs/PROJECT_CONTEXT.md`.
-Read the live report before editing and preserve teammates' sections. Do not
+Read the live report before editing and preserve unrelated sections. Do not
 replace the entire report for a concordance update. Refresh corpus outputs and
 report evidence together; never keep old numerical conclusions after changing
 the inputs or query configuration.

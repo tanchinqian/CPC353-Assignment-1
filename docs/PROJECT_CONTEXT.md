@@ -11,15 +11,15 @@
 - LaTeX bibliography folder: https://drive.google.com/drive/folders/1zqhCiH_N98vU9bMMGdIN-SvIVLlKlbgX
 - IEEE template folder: https://drive.google.com/drive/folders/1J3JMfUgYx9LM7vxBR54E0hq3iOJTesQg
 
-The user supplied the same folder URL under both “Drive” and “Docs”. The direct
-report URL above was resolved by listing that folder on 2026-11-09; it is the
-existing shared report, not a new copy. Re-read files before editing them.
+The shared folder contains the working report, source Sheet, guidelines, and
+reference material. Re-read the current versions before editing them.
 
-## Responsibilities and scope
+## Project scope
 
-The user is responsible for **concordance analysis**. Implement processing in
-this repository and maintain the concordance method/findings in the report.
-Preserve other contributors' preprocessing, stop-word and n-gram work.
+This shared repository contains processing code and method documentation for
+the group project. Keep the report's methodology and findings consistent with
+the implemented analyses. Preserve unrelated analysis components when making
+changes to preprocessing, concordance, stop words, or n-grams.
 The local assignment brief, collection workbook, `output/`, and `tmp/` must not
 be committed. Their presence does not make them pipeline inputs.
 
@@ -78,5 +78,5 @@ by hard-coded character offsets:
 - V.B. Concordance Findings: measured results, identified examples and lexicon.
 
 Use `docs/concordance_results.md` for the local evidence summary and caveats.
-The report still has other contributors' unfinished sections; completion of
+The report still has unfinished sections; completion of
 concordance does not mean the entire assignment is ready for submission.
