@@ -93,16 +93,18 @@ concordance does not mean the entire assignment is ready for submission.
 The shared report contains editable native tables and a workflow figure,
 using the full 2026-11-09 snapshot:
 
-- Figure 1: all 125 review rows, preprocessing, then the two implemented analyses.
+- Figure 1: all 125 review rows, preprocessing, then concordance, n-gram and
+  stop-word analysis. The n-gram branch is dashed and labelled planned until
+  its implementation and evidence are available.
 - Table I: language counts by collected/AI origin, with totals.
 - Table II: selected concordance terms, meanings, occurrences and review coverage.
 - Table III: short collected-review excerpts with contextual interpretation.
 - Table IV: the five most frequent project stop words and normalized counts.
 
 Figure 1 uses an input parallelogram, rectangular process boxes, and directional
-arrows. Its two branches share the preprocessed corpus; they are not a decision
+arrows. Its three branches share the preprocessed corpus; they are not a decision
 or a sequential dependency. The editable vector source is
-`docs/figures/analysis_workflow.svg` (234 x 174 pt). Insert a high-resolution PNG
+`docs/figures/analysis_workflow.svg` (234 x 186 pt). Insert a high-resolution PNG
 render at that size in the report, with the figure caption below it. Generated
 image exports belong in ignored `output/`, not in Git.
 
