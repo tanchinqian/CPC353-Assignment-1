@@ -18,27 +18,23 @@ Shared report and resource URLs are in `PROJECT_CONTEXT.md`.
 
 ## Method
 
-Concordance places a selected word or phrase beside its surrounding text so
-that its use can be interpreted in context [1]. This implementation searches
-case-folded exact token sequences in unfiltered sentence arrays. It displays
-up to five tokens on each side, clips at sentence boundaries and retains all
-overlapping matches. It never joins reviews or constructs phrases across
-sentences. Every hit carries its origin, review ID, language label, source URL,
-original text/hash, sentence index and review-token offsets.
+The notebook combines all retained collected and AI-generated reviews. It selects English and Malay words related to product attributes, evaluation and contrast, together with frequent words from the corpus. This produces 37 search terms, including phrases such as “not too spicy”. Each match is displayed with up to five words on either side, within the same sentence. Stop words remain in these context lines so that negation and other relationships between words are preserved.
 
-Selection combines 32 explicit English/Malay attribute, evaluation, negation
-and contrast queries with the top 12 token types after excluding project stop
-words and six listed product-name tokens. Deduplication yields 37 queries and
-332 query-occurrence records (overlapping queries are not unique passages).
-Frequency ties are resolved alphabetically. The selected frequency candidates
-are noodles, but, mi, kuah, sedap, flavour, rasa, tak, kari, kuahnya, noodle,
-and spicy. Stop words remain in context; their exclusion affects candidate ranking
-only. Variant forms remain separate: kuah does not include kuahnya, and spicy
-does not include spiciness. The curated selection is not an exhaustive attribute
-dictionary. Occurrence counts, distinct review coverage and frequencies per
-1,000 unfiltered tokens are exported, including zero-hit queries.
+For each term, the notebook records its frequency and the number of reviews containing it. Matching ignores letter case but keeps forms such as “kuah” and “kuahnya” separate. The results are saved as “kwic.csv” and “keyword_summary.csv” in the concordance analysis folder. A small bilingual lexicon explains selected expressions and informal spellings. The original reviews remain available for checking meaning and switches between sentences.
 
-## Evidence from the combined corpus
+The search combines 32 specified queries and 12 frequency-selected candidates, giving 37 distinct queries and 332 matches. Frequency ties are alphabetical. Candidate ranking excludes the project stop words and six listed product-name tokens, while the searched context remains unfiltered. Overlapping matches are retained. Different queries can match the same passage; 332 matches does not mean 332 independent passages. Full parameters are recorded in the notebook and run manifest.
+
+## Findings
+
+In the combined corpus of 125 reviews, “kuah” occurred 21 times in 18 reviews and “sedap” occurred 20 times in 19 reviews. The texture terms “kenyal” and “springy” appeared ten and six times, respectively. These words provide starting points for examining broth, taste and texture. Their surrounding words show how the attributes are evaluated.
+
+One collected review describes the noodles as “not too spicy” but says the soup taste is not “kaw”. The negation qualifies the heat level and expresses a separate criticism of the soup’s flavour. Another collected review says, “Tak perlu goreng just rebus atau celur mi”. The English word “just” appears within Malay preparation advice, showing how code-switching is used to describe convenience.
+
+The bilingual lexicon records meanings such as “sedap” (tasty) and “kenyal” (springy or chewy), alongside informal forms such as “mmg” (memang) and “sgt” (sangat). Each abbreviation occurred twice in collected reviews. Keeping these forms makes the informal wording available for analysis. Together, the examples show how attributes are described and qualified in mixed-language text. The findings describe this combined collected and AI-generated corpus, rather than customer preferences across all instant noodle products.
+
+## Supporting evidence
+
+Review identifiers remain here and in the exported evidence files for tracing examples; they are omitted from the report prose.
 
 | Query | Occurrences | Distinct reviews | Code-switched-labelled reviews containing it |
 | --- | ---: | ---: | ---: |
@@ -54,43 +50,13 @@ These are exact-query counts, not aggregated attribute frequencies. A matched
 review's language label does not prove the local sentence contains a switch.
 Several queries overlap, so their counts must not be added as unique passages.
 
-### Context examples and interpretation
+| Report evidence | Origin and review key | Context |
+| --- | --- | --- |
+| Negation and contrasting evaluations | Collected `real:REV-06` | “not too spicy” and soup taste described as not “kaw” |
+| English insertion in Malay preparation advice | Collected `real:REAL-004` | “Tak perlu goreng just rebus atau celur mi” |
+| Informal abbreviations | Collected `real:REV-03`, `real:REAL-002` | Each contains one “mmg” and one “sgt” |
 
-- **Collected real:REV-06:** `springy texture of the noodles [not too spicy] but the soup taste is`.
-  The complete review contrasts an acceptable heat level with soup described
-  as not “kaw”. This shows why the negator and contrast marker must remain:
-  the isolated keyword spicy would lose the degree qualification. “Kaw” is
-  context-sensitive colloquial Malaysian usage; the example is not automatic
-  proof of a particular lexical language or switching category.
-- **Synthetic ai:REV-AI-001:** `kuah shin ramyun memang [pedas] but the springy noodles make`.
-  A Malay clause about heat is followed by an English clause about texture,
-  joined by “but”. This illustrates an intra-sentential shift and a trade-off
-  between attributes. Because it is AI-generated, it is evidence of the
-  constructed corpus rather than independent customer behaviour.
-- **Synthetic ai:REV-AI-034:** `shin ramyun ni [sedap gila] bila mi masih firm dan`.
-  The Malay intensifier phrase occurs beside the English adjective “firm”.
-  This illustrates lexical insertion into the surrounding Malay wording;
-  it does not establish which pattern is most common in real reviews.
-- **Synthetic ai:REV-AI-035:** the full original has a Malay sentence describing
-  heat and taste, followed by “The noodles also held their shape well.” This
-  illustrates an inter-sentential shift. Sentence-clipped KWIC deliberately
-  keeps the two sentences separate; the exported original permits inspection.
-- **Collected real:REAL-004 (Mi Sedaap Sambal Goreng):** “Tak perlu goreng just
-  rebus atau celur mi” places English “just” within Malay preparation advice.
-  This is a collected example from the additional rows now included in the
-  full corpus. It concerns preparation convenience, not just taste or texture.
-- **Collected real:REV-03 and real:REAL-002:** “mmg” and “sgt” each occur twice
-  across these two reviews. They are preserved as informal spellings rather
-  than silently expanded. Glosses are interpretation aids; the searched
-  evidence remains the original tokens.
-
-The examples support contextual discussion of taste/heat, broth, texture and
-preparation convenience.
-They do not establish customer sentiment, rank all attributes, or estimate
-language-switch rates. Exact kuah and kenyal now occur in both collected and
-synthetic reviews; source keys in the evidence files keep that distinction
-visible. Combined-corpus frequency is not a measure of independent customer
-preference.
+Each exported match retains its original text, source URL, origin, review ID, language label, sentence index, text hash and token offsets. Offsets are zero-based positions within a review, with an exclusive end; they are not original-text character positions. Exact kuah and kenyal occur in both collected and synthetic reviews.
 
 ## Bilingual reading aid
 
