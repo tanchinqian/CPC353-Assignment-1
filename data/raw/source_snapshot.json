@@ -1,16 +1,29 @@
 {
   "source_spreadsheet_id": "1BzvT_kU5uHniEZFE2YcY6KccbnY7EIFWFnN0ebUUVvs",
   "source_url": "https://docs.google.com/spreadsheets/d/1BzvT_kU5uHniEZFE2YcY6KccbnY7EIFWFnN0ebUUVvs/edit",
-  "snapshot_date": "2026-11-02",
-  "method": "Read-only values snapshot of the two review tabs; non-review template rows omitted. Original review text preserved verbatim.",
+  "snapshot_date": "2026-11-09",
+  "method": "Complete read-only values export of both review tabs. All rows with an ID or review text retained for preprocessing; blank/template/prompt-only rows omitted. No contributor, product, date, origin or language selection.",
   "sheets": {
     "real_reviews.csv": "Self-Collected Data",
     "ai_reviews.csv": "AI-Generated Data"
   },
-  "review_counts": {
-    "real": 12,
-    "ai": 53
+  "read_ranges": {
+    "Self-Collected Data": "'Self-Collected Data'!A4:L1000",
+    "AI-Generated Data": "'AI-Generated Data'!A4:M1000"
   },
-  "scope": "Instant noodle reviews across products; current 65-review snapshot contains Shin Ramyun only.",
-  "dates": "Assigned real dates are synthetic metadata, not original publication dates. Dates excluded from linguistic analysis."
+  "review_counts": {
+    "real": 57,
+    "ai": 68
+  },
+  "omitted_nonreview_rows_in_export": {
+    "real": 0,
+    "ai": 128
+  },
+  "scope": "All review candidates from both source tabs; instant noodle products across brands.",
+  "dates": "Preserved as supplied metadata. Assigned dates are not assumed to be verified publication dates; dates are not linguistic features.",
+  "ai_provenance": "Generation and seed fields preserved per row; theme-based and seed-linked examples coexist. No provenance is inferred.",
+  "input_sha256": {
+    "real_reviews.csv": "4ffc2df6b3f1295cc1702fb1b2b7088f21cb2cb7e950eafa111238e71e675500",
+    "ai_reviews.csv": "fd2228a0cebf9c82e9c4fd237689f7ddc92c194a14f18d0f5d60ca772cf48625"
+  }
 }

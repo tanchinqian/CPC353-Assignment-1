@@ -33,25 +33,28 @@ small bilingual lexicon of recurring/informal expressions.
 
 ## Data source and refresh boundary
 
-The reproducible tracked snapshot is dated **2026-11-02**: 12 collected and 53
-AI-generated Shin Ramyun reviews. All 65 are retained, with 1,201 unfiltered
-tokens; 25 reviews have an inherited Code-switched label. These are snapshot
-statistics, not a claim about the current live Sheet. Local collection/audit
-artifacts may describe later datasets; do not mix their totals with this run.
+The reproducible tracked snapshot is dated **2026-11-09** and includes all
+**125 review rows** from both shared Sheet tabs: 57 collected and 68 AI-generated
+reviews across instant noodle products. All 125 survive the existing structural
+and duplicate checks, with 2,252 unfiltered tokens. Inherited labels total
+61 English, 28 Malay and 36 code-switched reviews.
 
-On 2026-11-09, `Summary & Analysis!B2:F18` reports 125 live reviews: 57
-collected and 68 AI, with 61 English, 28 Malay and 36 code-switched labels.
-The guide and dashboard subtitle still say 65, so those descriptions are stale.
-The shared report's concordance findings explicitly use the tracked 65-review
-baseline; results for the live 125-review corpus require a separate refresh.
+Main analyses use the full retained corpus without contributor, ID-prefix,
+product, origin or language selection. Code-switched subsets are supplementary
+context views. Preserve source distinctions on records, but do not select only
+one contributor's additions. The Sheet's guide/dashboard subtitle still mention
+65; the actual review rows, not stale guide prose, determine the input corpus.
+Local collection artifacts are not additional inputs to this run.
 
 Source Sheet tabs: `Readme & Schema`, `Self-Collected Data`, `AI-Generated Data`,
 and `Summary & Analysis`. Review table headings are on row 4. Use a read-only
 export of the review tabs when a data refresh is requested, preserve real/AI
-provenance, update `data/raw/source_snapshot.json`, then rerun preprocessing,
-stop-word and concordance notebooks together. Never infer currency from the
-Sheet's guide text alone. Data collection and refreshing the tracked snapshot
-are separate from this concordance implementation.
+provenance, then rerun preprocessing, stop-word and concordance notebooks
+together. `tools/refresh_snapshot.py` imports a complete connector values JSON
+export, saves review candidates and source row numbers, and updates
+`data/raw/source_snapshot.json` with counts, ranges and hashes. The export JSON
+stays local; the existing tracked CSV snapshots and processing outputs are
+refreshed together. Never infer currency from the Sheet's guide text alone.
 
 ## Implementation conventions and history
 
@@ -76,6 +79,10 @@ by hard-coded character offsets:
 - IV.B. Concordance Analysis: method and reproducibility.
 - IV.E. Reliability Checks: concordance checks, clearly bounded in scope.
 - V.B. Concordance Findings: measured results, identified examples and lexicon.
+
+For a full-corpus refresh also update II. Scenario and Dataset, V.A. Corpus
+Overview, and V.D. Stop-Word Findings including its native table. Preserve
+unrelated writing, author information and the unfinished n-gram sections.
 
 Use `docs/concordance_results.md` for the local evidence summary and caveats.
 The report still has unfinished sections; completion of

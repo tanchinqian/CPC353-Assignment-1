@@ -2,17 +2,19 @@
 
 ## Scope and reproduction
 
-This is the concordance contribution for the tracked **2026-11-02** snapshot,
-not the expanded live Sheet. The run retains 65 Shin Ramyun reviews (12
-collected, 53 AI-generated) and 1,201 unfiltered tokens. There are 25 inherited
-code-switched review labels. The live Sheet summary reported 125 reviews on
-2026-11-09; refresh all analyses before drawing conclusions about that corpus.
+This analysis uses the complete **2026-11-09** source Sheet snapshot across
+instant noodle products. All 125 review candidates (57 collected, 68
+AI-generated) pass the existing structural and duplicate checks and contribute
+2,252 unfiltered tokens. Inherited labels are 61 English, 28 Malay and 36
+code-switched reviews. There is no contributor, ID-prefix, product, origin or
+language selection. Blank/template/prompt-only rows are not review candidates.
 
 Run `python tools/run_notebook.py concordance_analysis.ipynb` from the repository.
 The ignored `data/analysis/concordance/` directory contains complete KWIC,
 keyword coverage, lexicon evidence and a hash manifest. Inputs are the two
-preprocessed JSONL files; the original CSVs, source Sheet and other methods are
-unchanged. Shared report and resource URLs are in `PROJECT_CONTEXT.md`.
+preprocessed JSONL files generated from refreshed raw CSV snapshots. All three
+implemented notebooks were rerun together; the live source Sheet was read only.
+Shared report and resource URLs are in `PROJECT_CONTEXT.md`.
 
 ## Method
 
@@ -26,10 +28,11 @@ original text/hash, sentence index and review-token offsets.
 
 Selection combines 32 explicit English/Malay attribute, evaluation, negation
 and contrast queries with the top 12 token types after excluding project stop
-words and six listed product-name tokens. Deduplication yields 38 queries.
+words and six listed product-name tokens. Deduplication yields 37 queries and
+332 query-occurrence records (overlapping queries are not unique passages).
 Frequency ties are resolved alphabetically. The selected frequency candidates
-are noodles, mi, but, kuah, sedap, kuahnya, broth, noodle, firm, kenyal, seasoning,
-and tak. Stop words remain in context; their exclusion affects candidate ranking
+are noodles, but, mi, kuah, sedap, flavour, rasa, tak, kari, kuahnya, noodle,
+and spicy. Stop words remain in context; their exclusion affects candidate ranking
 only. Variant forms remain separate: kuah does not include kuahnya, and spicy
 does not include spiciness. The curated selection is not an exhaustive attribute
 dictionary. Occurrence counts, distinct review coverage and frequencies per
@@ -39,13 +42,13 @@ dictionary. Occurrence counts, distinct review coverage and frequencies per
 
 | Query | Occurrences | Distinct reviews | Code-switched-labelled reviews containing it |
 | --- | ---: | ---: | ---: |
-| sedap | 12 | 11 | 7 |
-| kuah | 12 | 12 | 8 |
-| broth | 8 | 7 | 1 |
-| kenyal | 7 | 7 | 3 |
-| tak | 7 | 6 | 5 |
-| springy | 4 | 4 | 3 |
-| tapi | 2 | 2 | 2 |
+| sedap | 20 | 19 | 9 |
+| kuah | 21 | 18 | 10 |
+| broth | 10 | 9 | 1 |
+| kenyal | 10 | 10 | 3 |
+| tak | 13 | 12 | 8 |
+| springy | 6 | 6 | 3 |
+| tapi | 4 | 4 | 4 |
 
 These are exact-query counts, not aggregated attribute frequencies. A matched
 review's language label does not prove the local sentence contains a switch.
@@ -72,15 +75,22 @@ Several queries overlap, so their counts must not be added as unique passages.
   heat and taste, followed by “The noodles also held their shape well.” This
   illustrates an inter-sentential shift. Sentence-clipped KWIC deliberately
   keeps the two sentences separate; the exported original permits inspection.
-- **Collected real:REV-03:** “mmg” and “sgt” each occur once. They are preserved
-  as informal spellings rather than silently expanded. Their glosses are
-  interpretation aids; the searched evidence remains the original tokens.
+- **Collected real:REAL-004 (Mi Sedaap Sambal Goreng):** “Tak perlu goreng just
+  rebus atau celur mi” places English “just” within Malay preparation advice.
+  This is a collected example from the additional rows now included in the
+  full corpus. It concerns preparation convenience, not just taste or texture.
+- **Collected real:REV-03 and real:REAL-002:** “mmg” and “sgt” each occur twice
+  across these two reviews. They are preserved as informal spellings rather
+  than silently expanded. Glosses are interpretation aids; the searched
+  evidence remains the original tokens.
 
-The examples support contextual discussion of taste/heat, broth and texture.
+The examples support contextual discussion of taste/heat, broth, texture and
+preparation convenience.
 They do not establish customer sentiment, rank all attributes, or estimate
-language-switch rates. In particular, every exact kuah and kenyal occurrence
-in this snapshot comes from synthetic reviews; combined-corpus frequency must
-not be presented as evidence of independent customer preference.
+language-switch rates. Exact kuah and kenyal now occur in both collected and
+synthetic reviews; source keys in the evidence files keep that distinction
+visible. Combined-corpus frequency is not a measure of independent customer
+preference.
 
 ## Bilingual reading aid
 
@@ -90,8 +100,8 @@ tapi (but), sgt (sangat), mmg (memang), kaw (context-sensitive concentrated/stro
 sedap gila (very tasty), not too spicy, and springy. This is a project-authored
 lexicon, not a validated language-identification resource. The generated
 evidence table supplies counts and all review keys; its KWIC companion permits
-checking each occurrence. One-off informal forms are explicitly retained as
-examples rather than described as recurrent patterns.
+checking each occurrence. Single-occurrence forms such as kaw and sedap gila
+are examples rather than established recurrent patterns.
 
 ## Reliability and remaining work
 
@@ -104,11 +114,12 @@ the full originals; no automated token language or sentiment labels are added.
 The sentence splitter can oversplit abbreviations. Normalized token contexts
 omit punctuation, case and emojis, which remain in originals. Inherited review
 labels require group review, including ambiguous borrowing/brand mentions.
-REV-01 retains its existing source/seasoning warning. The corpus is small,
-single-product and mostly synthetic. Re-export the expanded Sheet and rerun
-preprocessing, stop words and concordance before replacing these baseline
-findings. The group's unfinished n-gram, abstract and synthesis sections are
-outside this concordance contribution.
+REV-01 retains its existing source/seasoning warning. The corpus is a convenience
+sample across brands and contains substantial synthetic material; it does not
+represent category-wide customer behaviour. Later Sheet edits require another
+complete export and rerun of preprocessing, stop words and concordance, with
+the report evidence refreshed at the same time. N-gram, abstract and synthesis
+sections remain unfinished.
 
 ## Reference
 

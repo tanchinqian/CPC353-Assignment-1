@@ -1,6 +1,7 @@
 origin,language,reviews
-ai,Code-switched,20
-ai,English,16
-ai,Malay,17
-real,Code-switched,5
-real,English,7
+ai,Code-switched,25
+ai,English,21
+ai,Malay,22
+real,Code-switched,11
+real,English,40
+real,Malay,6

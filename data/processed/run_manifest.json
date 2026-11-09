@@ -1,11 +1,13 @@
 {
   "preprocessing_version": "1.0",
-  "python": "3.13.7",
+  "source_snapshot_date": "2026-11-09",
+  "corpus_scope": "All review candidates from both source tabs; no contributor, ID-prefix or language filter",
+  "python": "3.14.6",
   "pandas": "3.0.5",
   "nltk": "3.10.3",
   "input_sha256": {
-    "data\\raw\\real_reviews.csv": "967267d26a1f343c3fa64aa6cbd4639e2a168c635afa86ab0e047e1f28be3399",
-    "data\\raw\\ai_reviews.csv": "75266b487240a807d313f3f8b68475c43ae918db35bc7f6ec28dfb50124c0e58"
+    "data\\raw\\real_reviews.csv": "4ffc2df6b3f1295cc1702fb1b2b7088f21cb2cb7e950eafa111238e71e675500",
+    "data\\raw\\ai_reviews.csv": "fd2228a0cebf9c82e9c4fd237689f7ddc92c194a14f18d0f5d60ca772cf48625"
   },
   "unit": "complete review; sentence arrays retained separately",
   "token_pattern": "[^\\W\\d_]+(?:['-][^\\W\\d_]+)*\\d*",
@@ -18,21 +20,21 @@
   "counts": [
     {
       "origin": "real",
-      "reviews_before": 12,
-      "reviews_retained": 12,
+      "reviews_before": 57,
+      "reviews_retained": 57,
       "reviews_excluded": 0,
       "needs_manual_check": 1,
-      "tokens_before": 445,
-      "tokens_after": 307
+      "tokens_before": 1125,
+      "tokens_after": 774
     },
     {
       "origin": "ai",
-      "reviews_before": 53,
-      "reviews_retained": 53,
+      "reviews_before": 68,
+      "reviews_retained": 68,
       "reviews_excluded": 0,
       "needs_manual_check": 0,
-      "tokens_before": 756,
-      "tokens_after": 588
+      "tokens_before": 1127,
+      "tokens_after": 864
     }
   ],
   "stopwords": [
@@ -176,8 +178,8 @@
     "xde"
   ],
   "status": "Provisional. Resolve source flags and annotation checks before final findings.",
-  "dates": "Metadata only. Assigned real dates are synthetic, not publication dates.",
-  "ai_provenance": "Theme-based synthetic examples; no direct real-review seed links claimed.",
+  "dates": "Preserved as supplied metadata. Assigned dates are not assumed to be verified publication dates; dates are not linguistic features.",
+  "ai_provenance": "Generation and seed fields preserved per row; theme-based and seed-linked examples coexist. No provenance is inferred.",
   "limits": [
     "No automatic language detection",
     "No stemming or spelling correction",

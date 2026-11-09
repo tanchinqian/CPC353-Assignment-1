@@ -45,13 +45,32 @@ They preserve original text, source metadata, annotations and AI provenance.
 See `data/raw/source_snapshot.json`. Only review-bearing rows are copied;
 blank/template/prompt-only rows are omitted.
 
-The research scope is **instant noodles across products**. The current input
-snapshot is a 65-review Shin Ramyun subset, not a multi-product sample. Keep
-its product labels and review wording intact. Add collected reviews of other
-instant noodle products with their actual source URLs and product names; add
-any new synthetic examples with accurate product labels and generation notes.
-Re-export both review tabs and rerun both notebooks before interpreting the
-broader category. Do not describe the current statistics as category-wide.
+The research scope is **instant noodles across products**. The **2026-11-09**
+snapshot contains all **125 review rows** in both shared Sheet tabs: 57 collected
+and 68 AI-generated. Main analyses use the whole retained corpus, regardless of
+contributor, ID prefix, product, origin or language. Only the documented
+structural and duplicate checks can exclude review candidates; all 125 are
+currently retained. Code-switched subsets are optional contextual views.
+Keep product labels, original wording and source/generation metadata intact.
+This convenience sample does not establish category-wide customer preferences.
+
+For a complete connector export, read both tabs from row 4 through the last
+grid row (currently `A4:L1000` and `A4:M1000`). Save a local JSON object containing
+`spreadsheet_id`, `snapshot_date` (ISO date) and `sheets`, each with `title`,
+`range` and `values`. The row-4 headings must be the first values row. Then run:
+
+```powershell
+python tools/refresh_snapshot.py tmp/full_sheet_snapshot.json
+python tools/run_notebook.py preprocessing.ipynb
+python tools/run_notebook.py stopword_analysis.ipynb
+python tools/run_notebook.py concordance_analysis.ipynb
+```
+
+The importer preserves every row with an ID or review text for preprocessing,
+including incomplete records needing audit. Only non-review templates and
+prompt-only rows are omitted. It records source row numbers, export ranges,
+counts and CSV hashes; it never writes to the live Sheet. Keep the intermediate
+JSON local. Refresh both tabs together and revise report evidence after reruns.
 
 For more reviews, replace the appropriate CSV with an updated export, keeping
 its headings. Alternatively set `WORKBOOK` to a freshly exported XLSX in the
@@ -92,8 +111,8 @@ are required to run the notebook, and it never writes to the Google Sheet.
   discourse particles. Keep both pre-filter and filtered tokens.
 - Keep existing language/switching labels. Product names alone do not prove
   switching; group review of annotations remains necessary.
-- Dates/ratings are metadata, not preprocessing features. Assigned real dates
-  are synthetic, not original publication dates.
+- Dates/ratings are metadata, not preprocessing features. Preserve dates as
+  supplied; assigned dates are not assumed to be verified publication dates.
 
 ## Saved outputs
 
@@ -184,27 +203,21 @@ a 3–6 page IEEE report (excluding cover), Word and PDF, due 13 November 2026.
 Preprocessing, stop-word analysis and concordance are implemented. This does not
 complete the n-gram work or the remaining sections of the group report.
 
-On 9 November 2026 the live Sheet's summary reports **125 reviews** (57 collected,
-68 AI), while its guide text still says 65. The checked-in November 2 snapshot
-and the results below remain **65 reviews**. The concordance implementation did
-not replace the tracked corpus; export and rerun all methods before presenting
-results for the expanded live dataset.
-
-Current snapshot: **12 collected + 53 AI = 65 Shin Ramyun reviews**, below the target
-and not yet representative of other instant noodle products.
-Preprocessing currently retains all 65 structurally valid unique texts.
-Collected labels: 7 English, 5 code-switched. AI labels: 16 English,
-17 Malay, 20 code-switched. Treat counts as provisional.
+Current snapshot: **57 collected + 68 AI = 125 reviews**, all retained after
+cleaning, with **2,252 unfiltered tokens**. Collected labels: 40 English, 6 Malay,
+11 code-switched. AI labels: 21 English, 22 Malay, 25 code-switched. The source
+Sheet's old guide text still mentions 65; the actual review rows and current
+snapshot are authoritative. Review annotations remain provisional.
 
 REV-01 mentions duck seasoning despite its recorded product metadata:
 check the source/content before final analysis. It is flagged, not silently
 deleted. The pipeline does not verify any website; resolve the manual queue
 before publishing final findings.
 
-The AI examples were generated from themes, without direct real-review seed
-IDs. The brief permits generation from a real seed set: confirm whether this
-theme-based approach is acceptable or regenerate from verified instant noodle
-seed reviews later. No seed provenance is invented.
+The original 53 AI examples are theme-based; 15 additional synthetic examples
+carry seed-reference metadata. Those fields are preserved as supplied, without
+claiming that the referenced sources or generation histories were independently
+verified. Review seed provenance before final submission; do not invent it.
 
 The supplied reference notebook is used for its simple preprocessing layout,
 not its classifier or depression dataset:
@@ -226,6 +239,7 @@ Concordance validation:
 
 ```powershell
 python -m unittest discover -s tests -p test_concordance.py
+python -m unittest discover -s tests -p test_refresh_snapshot.py
 python tools/run_notebook.py concordance_analysis.ipynb
 ```
 
