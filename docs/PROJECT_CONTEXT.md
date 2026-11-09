@@ -87,3 +87,21 @@ unrelated writing, author information and the unfinished n-gram sections.
 Use `docs/concordance_results.md` for the local evidence summary and caveats.
 The report still has unfinished sections; completion of
 concordance does not mean the entire assignment is ready for submission.
+
+### Report visuals
+
+The shared report contains editable native tables and a table-based workflow
+diagram, using the full 2026-11-09 snapshot:
+
+- Figure 1: all 125 review rows, preprocessing, then the two implemented analyses.
+- Table I: language counts by collected/AI origin, with totals.
+- Table II: selected concordance terms, meanings, occurrences and review coverage.
+- Table III: short collected-review excerpts with contextual interpretation.
+- Table IV: the five most frequent project stop words and normalized counts.
+
+Review identifiers stay in supporting evidence, not visual captions or report
+prose. Tables fit one IEEE column (234 pt), with 9 pt Times New Roman text and
+light gray headers; body text is 10 pt. Methodology and results start on new
+pages to keep the current visuals intact. Recheck pagination after content
+changes. The visually checked export has five pages including the cover;
+remaining assignment placeholders are not completed by these layout changes.
