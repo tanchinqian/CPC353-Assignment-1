@@ -12,7 +12,7 @@ language selection. Blank/template/prompt-only rows are not review candidates.
 Run `python tools/run_notebook.py concordance_analysis.ipynb` from the repository.
 The ignored `data/analysis/concordance/` directory contains complete KWIC,
 keyword coverage, lexicon evidence and a hash manifest. Inputs are the two
-preprocessed JSONL files generated from refreshed raw CSV snapshots. All three
+preprocessed JSONL files generated from refreshed raw CSV snapshots. All four
 implemented notebooks were rerun together; the live source Sheet was read only.
 Shared report and resource URLs are in `PROJECT_CONTEXT.md`.
 
@@ -83,9 +83,9 @@ labels require group review, including ambiguous borrowing/brand mentions.
 REV-01 retains its existing source/seasoning warning. The corpus is a convenience
 sample across brands and contains substantial synthetic material; it does not
 represent category-wide customer behaviour. Later Sheet edits require another
-complete export and rerun of preprocessing, stop words and concordance, with
-the report evidence refreshed at the same time. N-gram, abstract and synthesis
-sections remain unfinished.
+complete export and rerun of preprocessing, stop words, concordance and n-grams, with
+the report evidence refreshed at the same time. Abstract and synthesis
+sections of the report remain in progress.
 
 ## Reference
 

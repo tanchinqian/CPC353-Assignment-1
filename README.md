@@ -3,9 +3,10 @@
 Start with **[preprocessing.ipynb](preprocessing.ipynb)**. It prepares the
 English-Malay reviews while preserving original text and unfiltered tokens.
 Then run **[stopword_analysis.ipynb](stopword_analysis.ipynb)** for the
-stop-word frequency analysis and **[concordance_analysis.ipynb](concordance_analysis.ipynb)**
-for keyword-in-context evidence. The notebooks use pandas; preprocessing also
-uses NLTK without resource downloads.
+stop-word frequency analysis, **[concordance_analysis.ipynb](concordance_analysis.ipynb)**
+for keyword-in-context evidence, and **[ngram_analysis.ipynb](ngram_analysis.ipynb)**
+for bigram/trigram patterns and cross-language code-switching analysis. The
+notebooks use pandas; preprocessing also uses NLTK without resource downloads.
 
 Shared Drive, source Sheet, working report, and project conventions:
 **[docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md)**.
@@ -19,8 +20,8 @@ is deliberately excluded from commits.
 1. Open the notebook in Colab/Jupyter.
 2. Install `requirements.txt` locally, or run `%pip install pandas nltk` in Colab.
 3. Keep the two CSV inputs under `data/raw/` and set `PROJECT_DIR` in cell 1.
-4. Run every cell in `preprocessing.ipynb` in order, then run `stopword_analysis.ipynb`
-   and `concordance_analysis.ipynb`.
+4. Run every cell in `preprocessing.ipynb` in order, then run `stopword_analysis.ipynb`,
+   `concordance_analysis.ipynb` and `ngram_analysis.ipynb`.
 5. Use `data/processed/` and `data/analysis/` for saved outputs. Download `preprocessed_results.zip`
    or set the project folder to mounted Drive before the Colab session ends.
 
@@ -31,6 +32,7 @@ python -m pip install -r requirements.txt
 python tools/run_notebook.py preprocessing.ipynb
 python tools/run_notebook.py stopword_analysis.ipynb
 python tools/run_notebook.py concordance_analysis.ipynb
+python tools/run_notebook.py ngram_analysis.ipynb
 ```
 
 The runner uses a shared Python namespace, not a Jupyter kernel; the notebook
@@ -64,6 +66,7 @@ python tools/refresh_snapshot.py tmp/full_sheet_snapshot.json
 python tools/run_notebook.py preprocessing.ipynb
 python tools/run_notebook.py stopword_analysis.ipynb
 python tools/run_notebook.py concordance_analysis.ipynb
+python tools/run_notebook.py ngram_analysis.ipynb
 ```
 
 The importer preserves every row with an ID or review text for preprocessing,
@@ -194,14 +197,34 @@ See **[docs/concordance_results.md](docs/concordance_results.md)** for measured
 snapshot findings and examples. After changing data or queries, regenerate the
 outputs and revise that interpretation and the shared report together.
 
+## N-gram analysis
+
+The n-gram notebook extracts bigrams and trigrams within sentence boundaries
+from the combined corpus. It produces both unfiltered views (preserving function
+words) and stop-word-filtered views (highlighting content-word co-occurrences).
+
+Key analyses:
+- **Frequency tables:** Top bigrams and trigrams before and after stop-word
+  filtering, with review coverage and per-1,000-token rates.
+- **Cross-language bigrams:** Pairs where one token is English and the other
+  Malay, representing code-switching at word boundaries. Uses a project-authored
+  word-language lookup, not automatic language detection.
+- **Attribute-grouped bigrams:** N-grams classified by product attribute (taste,
+  texture, broth/soup, price, packaging, preparation).
+- **Language-grouped bigrams:** Top content-word pairs in English, Malay and
+  code-switched reviews separately.
+
+Outputs are saved in **`data/analysis/ngram/`** (ignored by Git). After changing
+data or stop words, rerun the n-gram notebook and revise the report evidence.
+
 ## Assignment requirements and current limitations
 
 The brief's data-preparation requirements are covered: originals retained,
 missing entries/duplicates addressed, unit defined, before/after counts saved,
 and datasets reusable. The brief asks for approximately 100–200 reviews and
 a 3–6 page IEEE report (excluding cover), Word and PDF, due 13 November 2026.
-Preprocessing, stop-word analysis and concordance are implemented. This does not
-complete the n-gram work or the remaining sections of the group report.
+Preprocessing, stop-word analysis, concordance and n-gram analysis are
+implemented. This does not complete the remaining sections of the group report.
 
 Current snapshot: **57 collected + 68 AI = 125 reviews**, all retained after
 cleaning, with **2,252 unfiltered tokens**. Collected labels: 40 English, 6 Malay,

@@ -29,7 +29,9 @@ one relevant NLP technique, approximately 100–200 reviews, and a 3–6 page IE
 report excluding the cover, submitted as Word and PDF on 13 November 2026.
 The group report plans concordance, n-gram and stop-word analyses. Concordance
 should include KWIC examples, interpretation of surrounding language, and a
-small bilingual lexicon of recurring/informal expressions.
+small bilingual lexicon of recurring/informal expressions. N-gram analysis
+should include bigram/trigram frequencies, cross-language bigrams at
+code-switching boundaries, and attribute-grouped n-gram patterns.
 
 ## Data source and refresh boundary
 
@@ -49,7 +51,7 @@ Local collection artifacts are not additional inputs to this run.
 Source Sheet tabs: `Readme & Schema`, `Self-Collected Data`, `AI-Generated Data`,
 and `Summary & Analysis`. Review table headings are on row 4. Use a read-only
 export of the review tabs when a data refresh is requested, preserve real/AI
-provenance, then rerun preprocessing, stop-word and concordance notebooks
+provenance, then rerun preprocessing, stop-word, concordance and n-gram notebooks
 together. `tools/refresh_snapshot.py` imports a complete connector values JSON
 export, saves review candidates and source row numbers, and updates
 `data/raw/source_snapshot.json` with counts, ranges and hashes. The export JSON
@@ -75,32 +77,34 @@ not automatic language identification or an origin comparison.
 The report uses tab `t.0` (Tab 1). Update by heading and freshly read text, never
 by hard-coded character offsets:
 
-- III. RELATED METHODS: add the concordance rationale alongside stop words.
+- III. RELATED METHODS: add concordance and n-gram rationales alongside stop words.
 - IV.B. Concordance Analysis: method and reproducibility.
-- IV.E. Reliability Checks: concordance checks, clearly bounded in scope.
+- IV.C. N-gram Analysis: bigram/trigram extraction and cross-language boundaries.
+- IV.E. Reliability Checks: concordance and n-gram checks, clearly bounded in scope.
 - V.B. Concordance Findings: measured results, identified examples and lexicon.
+- V.C. N-gram Findings: frequent collocations and directional code-switching patterns.
 
 For a full-corpus refresh also update II. Scenario and Dataset, V.A. Corpus
-Overview, and V.D. Stop-Word Findings including its native table. Preserve
-unrelated writing, author information and the unfinished n-gram sections.
+Overview, V.C. N-gram Findings, and V.D. Stop-Word Findings including their native tables. Preserve
+unrelated writing, author information and the completed n-gram sections.
 
 Use `docs/concordance_results.md` for the local evidence summary and caveats.
 The report still has unfinished sections; completion of
-concordance does not mean the entire assignment is ready for submission.
+concordance and n-gram analyses does not mean the entire assignment is ready for submission.
 
 ### Report visuals
 
 The shared report contains editable native tables and a workflow figure,
 using the full 2026-11-09 snapshot:
 
-- Figure 1: all 125 review rows, preprocessing, then the two implemented analyses.
+- Figure 1: all 125 review rows, preprocessing, then the three implemented analyses.
 - Table I: language counts by collected/AI origin, with totals.
 - Table II: selected concordance terms, meanings, occurrences and review coverage.
 - Table III: short collected-review excerpts with contextual interpretation.
 - Table IV: the five most frequent project stop words and normalized counts.
 
 Figure 1 uses an input parallelogram, rectangular process boxes, and directional
-arrows. Its two branches share the preprocessed corpus; they are not a decision
+arrows. Its three branches share the preprocessed corpus; they are not a decision
 or a sequential dependency. The editable vector source is
 `docs/figures/analysis_workflow.svg` (234 x 174 pt). Insert a high-resolution PNG
 render at that size in the report, with the figure caption below it. Generated
