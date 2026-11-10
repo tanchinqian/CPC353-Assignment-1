@@ -2,7 +2,7 @@
 
 Run from anywhere: python tools/run_notebook.py [notebook.ipynb]
 The saved notebook contains actual stdout/stderr from each executed code cell.
-Select preprocessing.ipynb, stopword_analysis.ipynb or concordance_analysis.ipynb. For interactive work,
+Select preprocessing.ipynb, stopword_analysis.ipynb, concordance_analysis.ipynb or ngram_analysis.ipynb. For interactive work,
 open the selected notebook in Colab or Jupyter instead.
 """
 import contextlib
@@ -14,7 +14,7 @@ import traceback
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED_NOTEBOOKS = {"preprocessing.ipynb", "stopword_analysis.ipynb", "concordance_analysis.ipynb"}
+ALLOWED_NOTEBOOKS = {"preprocessing.ipynb", "stopword_analysis.ipynb", "concordance_analysis.ipynb", "ngram_analysis.ipynb"}
 NOTEBOOK_NAME = Path(sys.argv[1]).name if len(sys.argv) > 1 else "preprocessing.ipynb"
 if NOTEBOOK_NAME not in ALLOWED_NOTEBOOKS:
     raise SystemExit(f"Choose one of: {', '.join(sorted(ALLOWED_NOTEBOOKS))}")

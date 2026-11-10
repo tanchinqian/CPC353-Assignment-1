@@ -11,3 +11,6 @@ preprocessed_results.zip
 
 # Regenerate concordance evidence with concordance_analysis.ipynb.
 /data/analysis/concordance/
+
+# Regenerate n-gram evidence with ngram_analysis.ipynb.
+/data/analysis/ngram/
