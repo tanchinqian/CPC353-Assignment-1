@@ -2,7 +2,7 @@
   "preprocessing_version": "1.0",
   "source_snapshot_date": "2026-11-09",
   "corpus_scope": "All review candidates from both source tabs; no contributor, ID-prefix or language filter",
-  "python": "3.14.6",
+  "python": "3.13.7",
   "pandas": "3.0.5",
   "nltk": "3.10.3",
   "input_sha256": {
