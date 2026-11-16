@@ -1,6 +1,9 @@
 __pycache__/
 .ipynb_checkpoints/
 .venv/
+/AGENTS.md
+/agents.md
+/requirements.txt
 preprocessed_results.zip
 
 # Local collection material is intentionally outside the processing repository.
